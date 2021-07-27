@@ -14,6 +14,7 @@
 # define CHECKER_H
 
 # include <libft.h>
+# include <unistd.h>
 
 void	sanitize_input(int argc, char **argv);
 

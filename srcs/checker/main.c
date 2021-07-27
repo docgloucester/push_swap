@@ -18,12 +18,12 @@ void	verify_order(t_list *stack)
 	{
 		if (ft_atoi(stack->next->content) < ft_atoi(stack->content))
 		{
-			ft_printf("KO\n");
+			write(1,"KO\n",3);
 			exit(0);
 		}
 		stack = stack->next;
 	}
-	ft_printf("OK\n");
+	write(1, "OK\n", 3);
 }
 
 t_list	*put_on_list(int argc, char **argv)
@@ -45,5 +45,6 @@ int		main(int argc, char **argv)
 	sanitize_input(argc, argv);
 	stack_a = put_on_list(argc, argv);
 	verify_order(stack_a);
+	ft_lstclear(&stack_a, free);
 	return (0);
 }
