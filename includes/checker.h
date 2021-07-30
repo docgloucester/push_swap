@@ -16,22 +16,26 @@
 # include <libft.h>
 # include <unistd.h>
 
-typedef struct	s_ops
-{
-	char	*SA,
-	SB,
-	SS,
-	PA,
-	PB,
-	RA,
-	RB,
-	RR,
-	RRA,
-	RRB,
-	RRR
-}				t_ops;
+typedef void	(*t_ops)(t_list *stack_a, t_list *stack_b);
+enum			{SA, SB, SS, PA, PB, RA, RB, RR, RRA, RRB, RRR};
 
+void	apply_sort(t_list *stack_a, t_ops *ops);
+
+void	do_nothing(void *ptr);
 void	sanitize_input(int argc, char **argv);
-void	apply_sort(t_list *stack_a);
+void	raise_apply_error(int status, int op);
+
+
+void	do_sa(t_list *stack_a, t_list *stack_b);
+void	do_sb(t_list *stack_a, t_list *stack_b);
+void	do_ss(t_list *stack_a, t_list *stack_b);
+void	do_pa(t_list *stack_a, t_list *stack_b);
+void	do_pb(t_list *stack_a, t_list *stack_b);
+void	do_ra(t_list *stack_a, t_list *stack_b);
+void	do_rb(t_list *stack_a, t_list *stack_b);
+void	do_rr(t_list *stack_a, t_list *stack_b);
+void	do_rra(t_list *stack_a, t_list *stack_b);
+void	do_rrb(t_list *stack_a, t_list *stack_b);
+void	do_rrr(t_list *stack_a, t_list *stack_b);
 
 #endif

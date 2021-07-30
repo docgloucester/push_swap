@@ -20,16 +20,19 @@ INCL	=	includes/
 LIBFT	=	Libft/
 
 SRCSD_C	=	srcs/checker/
-SRCSF_C	=	main.c error_handling.c
-
+SRCSF_C	=	main.c error_handling.c apply_sort.c
 SRCS_C	=	$(addprefix ${SRCSD_C},${SRCSF_C})
 OBJS_C	=	${SRCS_C:.c=.o}
 
 SRCSD_PS=	srcs/push_swap/
 SRCSF_PS=	main.c
-
 SRCS_PS	=	$(addprefix ${SRCSD_PS},${SRCSF_PS})
 OBJS_PS	=	${SRCS_PS:.c=.o}
+
+SRCSD_CO=	srcs/common/
+SRCSF_CO=	main.c
+SRCS_CO	=	$(addprefix ${SRCSD_CO},${SRCSF_CO})
+OBJS_CO	=	${SRCS_CO:.c=.o}
 
 
 
@@ -39,15 +42,15 @@ OBJS_PS	=	${SRCS_PS:.c=.o}
 
 all	:		${NAME_C} ${NAME_PS}
 
-${NAME_C}	:	${OBJS_C}
+${NAME_C}	:	${OBJS_C} ${OBJS_CO}
 			make -C ${LIBFT}
 			cp ${LIBFT}libft.a ./
-			${CC} ${CFLAGS} -o ${NAME_C} ${OBJS_C} libft.a
+			${CC} ${CFLAGS} -o ${NAME_C} ${OBJS_C} ${OBJS_CO} libft.a
 
-${NAME_PS}	:	${OBJS_PS}
+${NAME_PS}	:	${OBJS_PS} ${OBJS_CO}
 			make -C ${LIBFT}
 			cp ${LIBFT}libft.a ./
-			${CC} ${CFLAGS} -o ${NAME_PS} ${OBJS_PS} libft.a
+			${CC} ${CFLAGS} -o ${NAME_PS} ${OBJS_PS} ${OBJS_CO}libft.a
 
 clean :
 			find . -type f -name "*.o" -delete

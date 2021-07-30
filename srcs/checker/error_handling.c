@@ -12,6 +12,11 @@
 
 #include <checker.h>
 
+void	do_nothing(void *ptr)
+{
+	(void)ptr;
+}
+
 void	sanitize_input(int argc, char **argv)
 {
 	int		i;
@@ -27,11 +32,27 @@ void	sanitize_input(int argc, char **argv)
 	{
 		j = -1;
 		while (argv[i][++j])
+		{
 			if (!(ft_isdigit(argv[i][j])
 				|| (argv[i][j] == '-' && ft_isdigit(argv[i][j + 1]))))
 			{
 				ft_error("Arguments should be a list of integers only\n");
 				exit(-1);
 			}
+		}
+	}
+}
+
+void	raise_apply_error(int status, int op)
+{
+	if (status == -1)
+	{
+		ft_error("Unable to read on stdin\n");
+		exit(-1);
+	}
+	if (op == -1)
+	{
+		ft_error("Invalid operation\n");
+		exit(-1);
 	}
 }
