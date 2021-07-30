@@ -5,28 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgilles <rgilles@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 14:08:48 by rgilles           #+#    #+#             */
-/*   Updated: 2021/04/21 14:08:49 by rgilles          ###   ########.fr       */
+/*   Created: 2021/07/30 15:50:32 by rgilles           #+#    #+#             */
+/*   Updated: 2021/07/30 15:50:35 by rgilles          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-void	verify_order(t_list *stack)
-{
-	while (stack->next)
-	{
-		if (ft_atoi(stack->next->content) < ft_atoi(stack->content))
-		{
-			write(1, "KO\n", 3);
-			exit(0);
-		}
-		stack = stack->next;
-	}
-	write(1, "OK\n", 3);
-}
-
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
 	t_ops	ops[11];
@@ -44,8 +30,6 @@ int		main(int argc, char **argv)
 	ops[RRR] = &do_rrr;
 	sanitize_input(argc, argv);
 	stack_a = put_on_list(argc, argv);
-	apply_sort(&stack_a, ops);
-	verify_order(stack_a);
 	ft_lstclear(&stack_a, do_nothing);
 	return (0);
 }

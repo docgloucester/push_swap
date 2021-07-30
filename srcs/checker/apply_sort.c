@@ -39,6 +39,20 @@ int	is_op(char *str)
 	return (-1);
 }
 
+void	raise_apply_error(int op, int status)
+{
+	if (status == -1)
+	{
+		ft_error("Unable to read on stdin\n");
+		exit(-1);
+	}
+	if (op == -1)
+	{
+		ft_error("Invalid operation\n");
+		exit(-1);
+	}
+}
+
 void	apply_sort(t_list **stack_a, t_ops *ops)
 {
 	t_list	*stack_b;

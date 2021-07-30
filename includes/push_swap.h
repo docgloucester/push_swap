@@ -20,13 +20,9 @@
 typedef void	(*t_ops)(t_list **stack_a, t_list **stack_b);
 enum			{SA, SB, SS, PA, PB, RA, RB, RR, RRA, RRB, RRR};
 
-void	apply_sort(t_list **stack_a, t_ops *ops);
-
+t_list	*put_on_list(int argc, char **argv);
 void	do_nothing(void *ptr);
 void	sanitize_input(int argc, char **argv);
-void	raise_apply_error(int status, int op);
-
-
 void	do_sa(t_list **stack_a, t_list **stack_b);
 void	do_sb(t_list **stack_a, t_list **stack_b);
 void	do_ss(t_list **stack_a, t_list **stack_b);
@@ -38,5 +34,8 @@ void	do_rr(t_list **stack_a, t_list **stack_b);
 void	do_rra(t_list **stack_a, t_list **stack_b);
 void	do_rrb(t_list **stack_a, t_list **stack_b);
 void	do_rrr(t_list **stack_a, t_list **stack_b);
+
+void	apply_sort(t_list **stack_a, t_ops *ops);
+void	raise_apply_error(int status, int op);
 
 #endif

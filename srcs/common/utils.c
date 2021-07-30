@@ -1,15 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handling.c                                   :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgilles <rgilles@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/22 14:10:37 by rgilles           #+#    #+#             */
-/*   Updated: 2021/04/22 14:10:38 by rgilles          ###   ########.fr       */
+/*   Created: 2021/07/30 15:52:33 by rgilles           #+#    #+#             */
+/*   Updated: 2021/07/30 15:52:35 by rgilles          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include <push_swap.h>
 
 void	do_nothing(void *ptr)
@@ -43,16 +42,14 @@ void	sanitize_input(int argc, char **argv)
 	}
 }
 
-void	raise_apply_error(int op, int status)
+t_list	*put_on_list(int argc, char **argv)
 {
-	if (status == -1)
-	{
-		ft_error("Unable to read on stdin\n");
-		exit(-1);
-	}
-	if (op == -1)
-	{
-		ft_error("Invalid operation\n");
-		exit(-1);
-	}
+	t_list	*stack;
+	int		i;
+
+	i = 0;
+	stack = NULL;
+	while (++i < argc)
+		ft_lstadd_back(&stack, ft_lstnew(argv[i]));
+	return (stack);
 }
