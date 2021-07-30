@@ -27,7 +27,8 @@ void	sanitize_input(int argc, char **argv)
 	{
 		j = -1;
 		while (argv[i][++j])
-			if (!(ft_isdigit(argv[i][j])))
+			if (!(ft_isdigit(argv[i][j])
+				|| (argv[i][j] == '-' && ft_isdigit(argv[i][j + 1]))))
 			{
 				ft_error("Arguments should be a list of integers only\n");
 				exit(-1);

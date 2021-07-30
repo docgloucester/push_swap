@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   apply_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgilles <rgilles@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 14:05:10 by rgilles           #+#    #+#             */
-/*   Updated: 2021/04/21 14:05:11 by rgilles          ###   ########.fr       */
+/*   Created: 2021/07/29 14:20:53 by rgilles           #+#    #+#             */
+/*   Updated: 2021/07/29 14:20:55 by rgilles          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
-
-# include <libft.h>
-# include <unistd.h>
-
-typedef struct	s_ops
+int	apply_sort(t_list *stack_a)
 {
-	char	*SA,
-	SB,
-	SS,
-	PA,
-	PB,
-	RA,
-	RB,
-	RR,
-	RRA,
-	RRB,
-	RRR
-}				t_ops;
+	t_list	*stack_b;
+	char	*line;
 
-void	sanitize_input(int argc, char **argv);
-void	apply_sort(t_list *stack_a);
-
-#endif
+	if (get_next_line(0, &line) >= 0)
+	{
+		
+	}
+	else
+	{
+		ft_error("Unable to read on stdin\n");
+		exit(-1);
+	}
+}

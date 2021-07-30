@@ -38,13 +38,19 @@ t_list	*put_on_list(int argc, char **argv)
 	return (stack);
 }
 
+void	do_nothing(void *ptr)
+{
+	(void)ptr;
+}
+
 int		main(int argc, char **argv)
 {
 	t_list	*stack_a;
 	
 	sanitize_input(argc, argv);
 	stack_a = put_on_list(argc, argv);
+	apply_sort(stack_a);
 	verify_order(stack_a);
-	ft_lstclear(&stack_a, free);
+	ft_lstclear(&stack_a, do_nothing);
 	return (0);
 }
