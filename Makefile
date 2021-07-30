@@ -30,7 +30,7 @@ SRCS_PS	=	$(addprefix ${SRCSD_PS},${SRCSF_PS})
 OBJS_PS	=	${SRCS_PS:.c=.o}
 
 SRCSD_CO=	srcs/common/
-SRCSF_CO=	main.c
+SRCSF_CO=	swap.c push.c rotate.c rrotate.c
 SRCS_CO	=	$(addprefix ${SRCSD_CO},${SRCSF_CO})
 OBJS_CO	=	${SRCS_CO:.c=.o}
 

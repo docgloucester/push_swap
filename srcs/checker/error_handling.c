@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <checker.h>
+#include <push_swap.h>
 
 void	do_nothing(void *ptr)
 {
@@ -43,7 +43,7 @@ void	sanitize_input(int argc, char **argv)
 	}
 }
 
-void	raise_apply_error(int status, int op)
+void	raise_apply_error(int op, int status)
 {
 	if (status == -1)
 	{

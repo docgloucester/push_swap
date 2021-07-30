@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <checker.h>
+#include <push_swap.h>
 
 void	verify_order(t_list *stack)
 {
@@ -56,7 +56,7 @@ int		main(int argc, char **argv)
 	ops[RRR] = &do_rrr;
 	sanitize_input(argc, argv);
 	stack_a = put_on_list(argc, argv);
-	apply_sort(stack_a, ops);
+	apply_sort(&stack_a, ops);
 	verify_order(stack_a);
 	ft_lstclear(&stack_a, do_nothing);
 	return (0);

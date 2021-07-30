@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <checker.h>
+#include <push_swap.h>
 
 int	is_op(char *str)
 {
@@ -28,18 +28,18 @@ int	is_op(char *str)
 		return (RA);
 	if (ft_strncmp(str, "rb", 2) == 0)
 		return (RB);
-	if (ft_strncmp(str, "rr", 2) == 0)
-		return (RR);
 	if (ft_strncmp(str, "rra", 3) == 0)
 		return (RRA);
 	if (ft_strncmp(str, "rrb", 3) == 0)
 		return (RRB);
 	if (ft_strncmp(str, "rrr", 3) == 0)
 		return (RRR);
+	if (ft_strncmp(str, "rr", 2) == 0)
+		return (RR);
 	return (-1);
 }
 
-void	apply_sort(t_list *stack_a, t_ops *ops)
+void	apply_sort(t_list **stack_a, t_ops *ops)
 {
 	t_list	*stack_b;
 	char	*line;
@@ -50,9 +50,12 @@ void	apply_sort(t_list *stack_a, t_ops *ops)
 	status = get_next_line(0, &line);
 	while (status != -1)
 	{
-		op = is_op(line);
-		if (op >= 0)
-			ops[op](stack_a, stack_b);
+		if (status)
+		{
+			op = is_op(line);
+			if (op >= 0)
+				ops[op](stack_a, &stack_b);
+		}
 		if (line)
 			free(line);
 		if (status == 0 || op == -1)
@@ -60,6 +63,6 @@ void	apply_sort(t_list *stack_a, t_ops *ops)
 		status = get_next_line(0, &line);
 	}
 	if (stack_b)
-		ft_lstclear(&stack_b, free);
+		ft_lstclear(&stack_b, do_nothing);
 	raise_apply_error(op, status);
 }
