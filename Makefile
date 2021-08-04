@@ -25,7 +25,7 @@ SRCS_C	=	$(addprefix ${SRCSD_C},${SRCSF_C})
 OBJS_C	=	${SRCS_C:.c=.o}
 
 SRCSD_PS=	srcs/push_swap/
-SRCSF_PS=	main.c
+SRCSF_PS=	main.c maths_tools.c sort_simple.c
 SRCS_PS	=	$(addprefix ${SRCSD_PS},${SRCSF_PS})
 OBJS_PS	=	${SRCS_PS:.c=.o}
 

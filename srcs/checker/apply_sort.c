@@ -64,7 +64,7 @@ void	apply_sort(t_list **stack_a, t_ops *ops)
 	status = get_next_line(0, &line);
 	while (status != -1)
 	{
-		if (status)
+		if (status && line[0] != 0)
 		{
 			op = is_op(line);
 			if (op >= 0)

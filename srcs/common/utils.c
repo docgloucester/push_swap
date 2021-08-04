@@ -16,6 +16,17 @@ void	do_nothing(void *ptr)
 	(void)ptr;
 }
 
+int		is_in_order(t_list *stack)
+{
+	while (stack->next)
+	{
+		if (ft_atoi(stack->next->content) < ft_atoi(stack->content))
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
+}
+
 void	sanitize_input(int argc, char **argv)
 {
 	int		i;

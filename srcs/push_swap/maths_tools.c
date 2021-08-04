@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   maths_tools.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgilles <rgilles@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 14:08:48 by rgilles           #+#    #+#             */
-/*   Updated: 2021/04/21 14:08:49 by rgilles          ###   ########.fr       */
+/*   Created: 2021/08/04 12:12:28 by rgilles           #+#    #+#             */
+/*   Updated: 2021/08/04 12:12:29 by rgilles          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-int	main(int argc, char **argv)
+void	add_move(int move, t_list *sa, t_list *sb, t_list **moves)
 {
-	t_list	*stack_a;
 	t_ops	ops[11];
 
 	ops[SA] = &do_sa;
@@ -28,13 +27,21 @@ int	main(int argc, char **argv)
 	ops[RRA] = &do_rra;
 	ops[RRB] = &do_rrb;
 	ops[RRR] = &do_rrr;
-	sanitize_input(argc, argv);
-	stack_a = put_on_list(argc, argv);
-	apply_sort(&stack_a, ops);
-	if (!is_in_order(stack_a))
-		write(1, "KO\n", 3);
-	else
-		write(1, "OK\n", 3);
-	ft_lstclear(&stack_a, do_nothing);
-	return (0);
+	ops[move](&sa, &sb);
+	ft_lstadd_back(moves, ft_lstnew(ft_itoa(move)));
+}
+
+int	get_stacked_value(t_list *stack, int pos)
+{
+	int i;
+
+	i = -1;
+	if (ft_lstsize(stack) >= pos)
+	{
+		while (++i < pos)
+			stack = stack->next;
+		return (ft_atoi(stack->content));
+	}
+	ft_error("Stack index out of bounds !\n");
+	exit(-1);
 }
