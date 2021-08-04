@@ -31,7 +31,7 @@ void	add_move(int move, t_list *sa, t_list *sb, t_list **moves)
 	ft_lstadd_back(moves, ft_lstnew(ft_itoa(move)));
 }
 
-int	get_stacked_value(t_list *stack, int pos)
+int	get_value(t_list *stack, int pos)
 {
 	int i;
 

@@ -18,7 +18,27 @@ void	print_moves(t_list *moves)
 	{
 		if (ft_atoi(moves->content) == SA)
 			write(1, "sa\n", 3);
-		moves =moves->next;
+		if (ft_atoi(moves->content) == SB)
+			write(1, "sb\n", 3);
+		if (ft_atoi(moves->content) == SS)
+			write(1, "ss\n", 3);
+		if (ft_atoi(moves->content) == PA)
+			write(1, "pa\n", 3);
+		if (ft_atoi(moves->content) == PB)
+			write(1, "pb\n", 3);
+		if (ft_atoi(moves->content) == RA)
+			write(1, "ra\n", 3);
+		if (ft_atoi(moves->content) == RB)
+			write(1, "rb\n", 3);
+		if (ft_atoi(moves->content) == RR)
+			write(1, "rr\n", 3);
+		if (ft_atoi(moves->content) == RRA)
+			write(1, "rra\n", 4);
+		if (ft_atoi(moves->content) == RRB)
+			write(1, "rrb\n", 4);
+		if (ft_atoi(moves->content) == RRR)
+			write(1, "rrr\n", 4);
+		moves = moves->next;
 	}
 }
 
