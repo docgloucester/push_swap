@@ -12,9 +12,15 @@
 
 #include <push_swap.h>
 
-int	main(int argc, char **argv)
+void	lets_sort(t_list *stack_a, t_list *moves)
+{
+	if ()
+}
+
+int		main(int argc, char **argv)
 {
 	t_list	*stack_a;
+	t_list	*moves;
 	t_ops	ops[11];
 
 	ops[SA] = &do_sa;
@@ -30,6 +36,8 @@ int	main(int argc, char **argv)
 	ops[RRR] = &do_rrr;
 	sanitize_input(argc, argv);
 	stack_a = put_on_list(argc, argv);
+	lets_sort(stack_a, moves);
+	print_moves(moves);
 	ft_lstclear(&stack_a, do_nothing);
 	return (0);
 }
