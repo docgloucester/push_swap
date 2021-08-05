@@ -70,7 +70,6 @@ int		main(int argc, char **argv)
 	if (!is_in_order(stack_a))
 		lets_sort(&stack_a, &moves);
 	print_moves(moves);
-print_stack(stack_a);
 	ft_lstclear(&stack_a, do_nothing);
 	ft_lstclear(&moves, free);
 	return (0);

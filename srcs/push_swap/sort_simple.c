@@ -12,56 +12,72 @@
 
 #include <push_swap.h>
 
-void	sort_3(t_list **s_a, t_list **moves)
+void	sort_3(t_list **stack_a, t_list **moves)
 {
-	if (get_value(*s_a, 1) > get_value(*s_a, 0))
+	if (get_value(*stack_a, 1) > get_value(*stack_a, 0))
 	{
-		if (get_value(*s_a, 2) < get_value(*s_a, 1))// 1 3 2
+		if (get_value(*stack_a, 2) < get_value(*stack_a, 1))
 		{
-			add_move(RRA, s_a, NULL, moves);
-			add_move(SA, s_a, NULL, moves);
+			add_move(RRA, stack_a, NULL, moves);
+			add_move(SA, stack_a, NULL, moves);
 		}
-		else if (get_value(*s_a, 2) < get_value(*s_a, 0))// 2 3 1
-			add_move(RRA, s_a, NULL, moves);
+		else if (get_value(*stack_a, 2) < get_value(*stack_a, 0))
+			add_move(RRA, stack_a, NULL, moves);
 	}
 	else
 	{
-		if (get_value(*s_a, 2) > get_value(*s_a, 0))// 2 1 3
-			add_move(SA, s_a, NULL, moves);
+		if (get_value(*stack_a, 2) > get_value(*stack_a, 0))
+			add_move(SA, stack_a, NULL, moves);
 		else
 		{
-			if (get_value(*s_a, 2) > get_value(*s_a, 1))//312
-				add_move(RA, s_a, NULL, moves);
-			else//321
+			if (get_value(*stack_a, 2) > get_value(*stack_a, 1))
+				add_move(RA, stack_a, NULL, moves);
+			else
 			{
-				add_move(SA, s_a, NULL, moves);
-				add_move(RRA, s_a, NULL, moves);
+				add_move(SA, stack_a, NULL, moves);
+				add_move(RRA, stack_a, NULL, moves);
 			}
 		}
 	}
 }
 
-/*void	sort_5(t_list *s_a, t_list **moves)
+void	sort_5(t_list **stack_a, t_list **moves)
 {
-	t_list *s_b;
+	t_list	*stack_b;
+	int		size;
 
-	while (ft_lstsize(s_a) > 3)
-		add_move(PB, s_a, s_b);
-
-}*/
-
-void	sort_simple(t_list **s_a, t_list **moves)
+	size = ft_lstsize(*stack_a);
+	while (ft_lstsize(*stack_a) > 3)
+		add_move(PB, stack_a, &stack_b, moves);
+	if (size == 5 && get_value(stack_b, 1) < get_value(stack_b, 0))
+		add_move(SB, NULL, &stack_b, moves);
+/*printf("The sorted stack b is constitued of :");
+while(stack_b)
 {
-	int size;
+	printf("%s, ", stack_b-> content);
+	stack_b = stack_b->next;
+}
+printf("\n");*/
+	sort_3(stack_a, moves);
+	while(stack_b)
+	{
+		roll_stack(stack_a, get_value(stack_b, 0), moves);
+		add_move(PA, stack_a, &stack_b, moves);
+	}
+}
 
-	size = ft_lstsize(*s_a); 
+void	sort_simple(t_list **stack_a, t_list **moves)
+{
+	int	size;
+
+	size = ft_lstsize(*stack_a);
 	if (size == 2)
 	{
-		if (get_value(*s_a, 1) < get_value(*s_a, 0))
-			add_move(SA, s_a, NULL, moves);
+		if (get_value(*stack_a, 1) < get_value(*stack_a, 0))
+			add_move(SA, stack_a, NULL, moves);
 	}
 	else if (size == 3)
-		sort_3(s_a, moves);
-/*	else
-		sort_5(s_a, moves);*/
+		sort_3(stack_a, moves);
+	else
+		sort_5(stack_a, moves);
 }
