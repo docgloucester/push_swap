@@ -12,7 +12,7 @@
 
 #include <push_swap.h>
 
-void	add_move(int move, t_list *sa, t_list *sb, t_list **moves)
+void	add_move(int move, t_list **sa, t_list **sb, t_list **moves)
 {
 	t_ops	ops[11];
 
@@ -27,7 +27,7 @@ void	add_move(int move, t_list *sa, t_list *sb, t_list **moves)
 	ops[RRA] = &do_rra;
 	ops[RRB] = &do_rrb;
 	ops[RRR] = &do_rrr;
-	ops[move](&sa, &sb);
+	ops[move](sa, sb);
 	ft_lstadd_back(moves, ft_lstnew(ft_itoa(move)));
 }
 

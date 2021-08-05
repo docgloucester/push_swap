@@ -36,9 +36,9 @@ void	do_rra(t_list **stack_a, t_list **stack_b);
 void	do_rrb(t_list **stack_a, t_list **stack_b);
 void	do_rrr(t_list **stack_a, t_list **stack_b);
 
-void	sort_simple(t_list *stack_a, t_list **moves);
+void	sort_simple(t_list **stack_a, t_list **moves);
 int		get_value(t_list *stack, int pos);
-void	add_move(int move, t_list *sa, t_list *sb, t_list **moves);
+void	add_move(int move, t_list **sa, t_list **sb, t_list **moves);
 
 void	apply_sort(t_list **stack_a, t_ops *ops);
 void	raise_apply_error(int status, int op);

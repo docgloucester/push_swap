@@ -42,10 +42,21 @@ void	print_moves(t_list *moves)
 	}
 }
 
-void	lets_sort(t_list *stack_a, t_list **moves)
+void	lets_sort(t_list **stack_a, t_list **moves)
 {
-	if (ft_lstsize(stack_a) <= 5)
+	if (ft_lstsize(*stack_a) <= 5)
 		sort_simple(stack_a, moves);
+}
+
+void DebugPrintStack(t_list *stack_a)
+{
+	printf("The sorted stack a is constitued of :");
+	while(stack_a)
+	{
+		printf("%s, ", stack_a-> content);
+		stack_a = stack_a->next;
+	}
+	printf("\n");
 }
 
 int		main(int argc, char **argv)
@@ -57,8 +68,9 @@ int		main(int argc, char **argv)
 	stack_a = put_on_list(argc, argv);
 	moves = NULL;
 	if (!is_in_order(stack_a))
-		lets_sort(stack_a, &moves);
+		lets_sort(&stack_a, &moves);
 	print_moves(moves);
+print_stack(stack_a);
 	ft_lstclear(&stack_a, do_nothing);
 	ft_lstclear(&moves, free);
 	return (0);
