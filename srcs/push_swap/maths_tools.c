@@ -31,19 +31,44 @@ void	add_move(int move, t_list **sa, t_list **sb, t_list **moves)
 	ft_lstadd_back(moves, ft_lstnew(ft_itoa(move)));
 }
 
-void	roll_stack(t_list **stack, int to_insert, t_list **moves)
+void	roll_stack(t_list **stack, t_list **st_b, int to_insert, t_list **moves)
 {
-	int	i;
+	int		i;
+	int		ret;
+	t_list	*curr;
 
-	i = -1;
-	while (++i && ft_atoi((*stack)->content) <= to_insert)
-		;
+	i = 0;
+	curr = *stack;
+	while (++i < ft_lstsize(*stack) && ft_atoi(curr->content) < to_insert)
+	{
+//	printf("next i will be %d / %d\n", i, ft_lstsize(*stack));
+//	printf("moving from %s ", curr->content);
+//	printf("to %s\n", curr->next->content);
+			curr = curr->next;
+	}
+//printf("oef\n");
+	if (!(ft_atoi(curr->content) < to_insert))
+		i--;
 	if (i <= ft_lstsize(*stack) / 2)
+	{
+		ret = i;
 		while (i-- > 0)
 			add_move(RA, stack, NULL, moves);
-	else
-		while (i-- > 0)
+//	printf("Inserting %s...\n", (*st_b)->content);
+		add_move(PA, stack, st_b, moves);
+		while (++i < ret)
 			add_move(RRA, stack, NULL, moves);
+	}
+	else
+	{
+		ret = i;
+		while (i++ < ft_lstsize(*stack))
+			add_move(RRA, stack, NULL, moves);
+//	printf("Inserting %s...\n", (*st_b)->content);
+		add_move(PA, stack, st_b, moves);
+		while (i-- > ret)
+			add_move(RA, stack, NULL, moves);
+	}
 }
 
 int		get_value(t_list *stack, int pos)

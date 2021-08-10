@@ -12,6 +12,17 @@
 
 #include <push_swap.h>
 
+void DebugPrintStack(t_list *stack_a)
+{
+	printf("The sorted stack a is constitued of :");
+	while(stack_a)
+	{
+		printf("%s, ", stack_a-> content);
+		stack_a = stack_a->next;
+	}
+	printf("\n");
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
@@ -31,6 +42,7 @@ int	main(int argc, char **argv)
 	sanitize_input(argc, argv);
 	stack_a = put_on_list(argc, argv);
 	apply_sort(&stack_a, ops);
+//DebugPrintStack(stack_a);
 	if (!is_in_order(stack_a))
 		write(1, "KO\n", 3);
 	else

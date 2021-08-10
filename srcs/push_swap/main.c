@@ -48,17 +48,6 @@ void	lets_sort(t_list **stack_a, t_list **moves)
 		sort_simple(stack_a, moves);
 }
 
-void DebugPrintStack(t_list *stack_a)
-{
-	printf("The sorted stack a is constitued of :");
-	while(stack_a)
-	{
-		printf("%s, ", stack_a-> content);
-		stack_a = stack_a->next;
-	}
-	printf("\n");
-}
-
 int		main(int argc, char **argv)
 {
 	t_list	*stack_a;

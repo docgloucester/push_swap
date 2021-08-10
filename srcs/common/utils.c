@@ -16,6 +16,17 @@ void	do_nothing(void *ptr)
 	(void)ptr;
 }
 
+void	check_oob(char **argv, int i)
+{
+	ft_atoi(argv[i]);
+	if (errno)
+	{
+		ft_error("Arguments should be within int limits.\n");
+		exit(-1);
+	}
+
+}
+
 int		is_in_order(t_list *stack)
 {
 	while (stack->next)
@@ -50,6 +61,7 @@ void	sanitize_input(int argc, char **argv)
 				exit(-1);
 			}
 		}
+		check_oob(argv, i);
 	}
 }
 

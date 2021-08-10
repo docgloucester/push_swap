@@ -38,7 +38,7 @@ void	do_rrr(t_list **stack_a, t_list **stack_b);
 
 void	sort_simple(t_list **stack_a, t_list **moves);
 int		get_value(t_list *stack, int pos);
-void	roll_stack(t_list **stack, int to_insert, t_list **moves);
+void	roll_stack(t_list **stack, t_list **st_b, int to_ins, t_list **moves);
 void	add_move(int move, t_list **sa, t_list **sb, t_list **moves);
 
 void	apply_sort(t_list **stack_a, t_ops *ops);

@@ -16,13 +16,13 @@ void	sort_3(t_list **stack_a, t_list **moves)
 {
 	if (get_value(*stack_a, 1) > get_value(*stack_a, 0))
 	{
-		if (get_value(*stack_a, 2) < get_value(*stack_a, 1))
+		if (get_value(*stack_a, 2) < get_value(*stack_a, 0))
+			add_move(RRA, stack_a, NULL, moves);
+		else if (get_value(*stack_a, 2) < get_value(*stack_a, 1))
 		{
 			add_move(RRA, stack_a, NULL, moves);
 			add_move(SA, stack_a, NULL, moves);
 		}
-		else if (get_value(*stack_a, 2) < get_value(*stack_a, 0))
-			add_move(RRA, stack_a, NULL, moves);
 	}
 	else
 	{
@@ -49,7 +49,7 @@ void	sort_5(t_list **stack_a, t_list **moves)
 	size = ft_lstsize(*stack_a);
 	while (ft_lstsize(*stack_a) > 3)
 		add_move(PB, stack_a, &stack_b, moves);
-	if (size == 5 && get_value(stack_b, 1) < get_value(stack_b, 0))
+	if (size == 5 && get_value(stack_b, 1) > get_value(stack_b, 0))
 		add_move(SB, NULL, &stack_b, moves);
 /*printf("The sorted stack b is constitued of :");
 while(stack_b)
@@ -61,8 +61,8 @@ printf("\n");*/
 	sort_3(stack_a, moves);
 	while(stack_b)
 	{
-		roll_stack(stack_a, get_value(stack_b, 0), moves);
-		add_move(PA, stack_a, &stack_b, moves);
+		roll_stack(stack_a, &stack_b, get_value(stack_b, 0), moves);
+		
 	}
 }
 
