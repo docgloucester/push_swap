@@ -51,13 +51,6 @@ void	sort_5(t_list **stack_a, t_list **moves)
 		add_move(PB, stack_a, &stack_b, moves);
 	if (size == 5 && get_value(stack_b, 1) > get_value(stack_b, 0))
 		add_move(SB, NULL, &stack_b, moves);
-/*printf("The sorted stack b is constitued of :");
-while(stack_b)
-{
-	printf("%s, ", stack_b-> content);
-	stack_b = stack_b->next;
-}
-printf("\n");*/
 	sort_3(stack_a, moves);
 	while(stack_b)
 	{

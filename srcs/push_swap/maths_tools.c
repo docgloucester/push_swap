@@ -40,13 +40,7 @@ void	roll_stack(t_list **stack, t_list **st_b, int to_insert, t_list **moves)
 	i = 0;
 	curr = *stack;
 	while (++i < ft_lstsize(*stack) && ft_atoi(curr->content) < to_insert)
-	{
-//	printf("next i will be %d / %d\n", i, ft_lstsize(*stack));
-//	printf("moving from %s ", curr->content);
-//	printf("to %s\n", curr->next->content);
 			curr = curr->next;
-	}
-//printf("oef\n");
 	if (!(ft_atoi(curr->content) < to_insert))
 		i--;
 	if (i <= ft_lstsize(*stack) / 2)
@@ -54,7 +48,6 @@ void	roll_stack(t_list **stack, t_list **st_b, int to_insert, t_list **moves)
 		ret = i;
 		while (i-- > 0)
 			add_move(RA, stack, NULL, moves);
-//	printf("Inserting %s...\n", (*st_b)->content);
 		add_move(PA, stack, st_b, moves);
 		while (++i < ret)
 			add_move(RRA, stack, NULL, moves);
@@ -64,7 +57,6 @@ void	roll_stack(t_list **stack, t_list **st_b, int to_insert, t_list **moves)
 		ret = i;
 		while (i++ < ft_lstsize(*stack))
 			add_move(RRA, stack, NULL, moves);
-//	printf("Inserting %s...\n", (*st_b)->content);
 		add_move(PA, stack, st_b, moves);
 		while (i-- > ret)
 			add_move(RA, stack, NULL, moves);

@@ -14,7 +14,7 @@
 
 void DebugPrintStack(t_list *stack_a)
 {
-	printf("The sorted stack a is constitued of :");
+	printf("The supposedly sorted stack a is constitued of :");
 	while(stack_a)
 	{
 		printf("%s, ", stack_a-> content);
