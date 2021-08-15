@@ -19,12 +19,12 @@ CFLAGS	=	-Wall -Wextra -Werror -g
 INCL	=	includes/
 LIBFT	=	Libft/
 
-SRCSD_C	=	srcs/checker/
+SRCSD_C	=	srcs/chkr/
 SRCSF_C	=	main.c apply_sort.c
 SRCS_C	=	$(addprefix ${SRCSD_C},${SRCSF_C})
 OBJS_C	=	${SRCS_C:.c=.o}
 
-SRCSD_PS=	srcs/push_swap/
+SRCSD_PS=	srcs/ps/
 SRCSF_PS=	main.c maths_tools.c sort_simple.c sort_many.c sort_many_aux.c
 SRCS_PS	=	$(addprefix ${SRCSD_PS},${SRCSF_PS})
 OBJS_PS	=	${SRCS_PS:.c=.o}
