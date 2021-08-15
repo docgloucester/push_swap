@@ -27,9 +27,9 @@ int		simplifyable(t_list *mvs)
 		return (1);
 	if ((ft_atoi(s1) == RB) && (ft_atoi(s2) == RA) && write(1, "rr\n", 3))
 		return (1);
-	if ((ft_atoi(s1) == RRA) && (ft_atoi(s2) == RRB) && write(1, "rrr\n", 3))
+	if ((ft_atoi(s1) == RRA) && (ft_atoi(s2) == RRB) && write(1, "rrr\n", 4))
 		return (1);
-	if ((ft_atoi(s1) == RRB) && (ft_atoi(s2) == RRA) && write(1, "rrr\n", 3))
+	if ((ft_atoi(s1) == RRB) && (ft_atoi(s2) == RRA) && write(1, "rrr\n", 4))
 		return (1);
 	if ((ft_atoi(s1) == PA) && (ft_atoi(s2) == PB))
 		return (1);
@@ -77,6 +77,8 @@ void	lets_sort(t_list **stack_a, t_list **moves)
 {
 	if (ft_lstsize(*stack_a) <= 5)
 		sort_simple(stack_a, moves);
+	else
+		sort_many(stack_a, moves);
 }
 
 int		main(int argc, char **argv)
@@ -84,6 +86,7 @@ int		main(int argc, char **argv)
 	t_list	*stack_a;
 	t_list	*moves;
 
+setvbuf(stdout, NULL, _IONBF, 0);
 	sanitize_input(argc, argv);
 	stack_a = put_on_list(argc, argv);
 	moves = NULL;

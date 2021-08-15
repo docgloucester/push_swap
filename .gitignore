@@ -56,3 +56,4 @@ checker
 test.sh
 .log
 .res
+.summary

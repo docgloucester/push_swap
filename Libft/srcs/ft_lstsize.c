@@ -11,14 +11,17 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+# include <stdio.h>
 
 int	ft_lstsize(t_list *lst)
 {
+//printf("BEGIN LSTSIZE\n");
 	int	i;
 
 	i = 0;
 	while (lst)
 	{
+//printf("Current counted stack element is %s\n", lst->content);
 		i++;
 		lst = lst->next;
 	}

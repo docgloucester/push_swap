@@ -46,9 +46,11 @@ void	sort_5(t_list **stack_a, t_list **moves)
 	t_list	*stack_b;
 	int		size;
 
+	stack_b = NULL;
 	size = ft_lstsize(*stack_a);
 	while (ft_lstsize(*stack_a) > 3)
 		add_move(PB, stack_a, &stack_b, moves);
+//printf("size of b is now %d\n", ft_lstsize(stack_b));
 	if (size == 5 && get_value(stack_b, 1) > get_value(stack_b, 0))
 		add_move(SB, NULL, &stack_b, moves);
 	sort_3(stack_a, moves);

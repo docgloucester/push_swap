@@ -77,3 +77,19 @@ int		get_value(t_list *stack, int pos)
 	ft_error("Stack index out of bounds !\n");
 	exit(-1);
 }
+
+int		get_rank(t_list *stack, int pos)
+{
+	int	i;
+
+	i = -1;
+	if (ft_lstsize(stack) >= pos)
+	{
+		while (++i < pos)
+			stack = stack->next;
+		return (stack->rank);
+	}
+	ft_error("Stack index out of bounds !\n");
+	exit(-1);
+}
+

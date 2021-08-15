@@ -25,7 +25,7 @@ SRCS_C	=	$(addprefix ${SRCSD_C},${SRCSF_C})
 OBJS_C	=	${SRCS_C:.c=.o}
 
 SRCSD_PS=	srcs/push_swap/
-SRCSF_PS=	main.c maths_tools.c sort_simple.c
+SRCSF_PS=	main.c maths_tools.c sort_simple.c sort_many.c sort_many_aux.c
 SRCS_PS	=	$(addprefix ${SRCSD_PS},${SRCSF_PS})
 OBJS_PS	=	${SRCS_PS:.c=.o}
 
@@ -37,28 +37,26 @@ OBJS_CO	=	${SRCS_CO:.c=.o}
 
 
 
-.c.o :		${INCL}checker.h ${INCL}push_swap.h ${LIBFT}${INCL}libft.h
+.c.o	:		${INCL}checker.h ${INCL}push_swap.h ${LIBFT}${INCL}libft.h
 			${CC} ${CFLAGS} -I${LIBFT}${INCL} -I${INCL} -c $< -o ${<:.c=.o}
 
 all	:		${NAME_C} ${NAME_PS}
 
-${NAME_C}	:	${OBJS_C} ${OBJS_CO}
-			make -C ${LIBFT}
-			cp ${LIBFT}libft.a ./
-			${CC} ${CFLAGS} -o ${NAME_C} ${OBJS_C} ${OBJS_CO} libft.a
+${NAME_C}	:	_libft ${OBJS_C} ${OBJS_CO}
+			${CC} ${CFLAGS} -o ${NAME_C} ${OBJS_C} ${OBJS_CO} ${LIBFT}libft.a
 
-${NAME_PS}	:	${OBJS_PS} ${OBJS_CO}
-			make -C ${LIBFT}
-			cp ${LIBFT}libft.a ./
-			${CC} ${CFLAGS} -o ${NAME_PS} ${OBJS_PS} ${OBJS_CO} libft.a
-
-clean :
+${NAME_PS}	:	_libft ${OBJS_PS} ${OBJS_CO}
+			${CC} ${CFLAGS} -o ${NAME_PS} ${OBJS_PS} ${OBJS_CO} ${LIBFT}libft.a
+clean	:
 			find . -type f -name "*.o" -delete
 
-fclean :	clean
+fclean	:	clean
 			find . -type f -name "*.a" -delete
 			rm -rf ${NAME_C} ${NAME_PS}
 
-re :		fclean all
+re	:		fclean all
 
-.PHONY :	re clean fclean
+_libft	:
+			make -C ${LIBFT}
+
+.PHONY	:	re clean fclean

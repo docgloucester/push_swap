@@ -68,11 +68,33 @@ void	sanitize_input(int argc, char **argv)
 t_list	*put_on_list(int argc, char **argv)
 {
 	t_list	*stack;
+	t_list	*curr;
+	t_list	*curr2;
 	int		i;
+	int		rank;
 
 	i = 0;
 	stack = NULL;
 	while (++i < argc)
 		ft_lstadd_back(&stack, ft_lstnew(argv[i]));
+	curr = stack;
+	while (curr)
+	{
+		curr2 = stack;
+		rank = 0;
+		while (curr2)
+		{
+			if (ft_atoi(curr2->content) < ft_atoi(curr->content))
+				rank++;
+			if (curr != curr2 && ft_atoi(curr2->content) == ft_atoi(curr->content))
+			{
+				ft_error("The stack must be constituted of unique integers\n");
+				exit(-1);
+			}
+			curr2 = curr2->next;
+		}
+		curr->rank = rank;
+		curr = curr->next;
+	}
 	return (stack);
 }

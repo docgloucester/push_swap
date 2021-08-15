@@ -36,8 +36,16 @@ void	do_rra(t_list **stack_a, t_list **stack_b);
 void	do_rrb(t_list **stack_a, t_list **stack_b);
 void	do_rrr(t_list **stack_a, t_list **stack_b);
 
+void	sort_many(t_list **stack_a, t_list **moves);
+void	populate_chunk_limits(t_list **stack_a, t_list **cl, int nbchunks);
+int		is_in_chunk(t_list *chunk, int number);
+void	push_rb(t_list **sa, t_list **sb, t_list **mvs, t_list *chunk);
+int		is_minmax(int number, int *minmax);
+void	pushback_upd(t_list **s_a, t_list **s_b, t_list **moves, int *minmax);
+
 void	sort_simple(t_list **stack_a, t_list **moves);
 int		get_value(t_list *stack, int pos);
+int		get_rank(t_list *stack, int pos);
 void	roll_stack(t_list **stack, t_list **st_b, int to_ins, t_list **moves);
 void	add_move(int move, t_list **sa, t_list **sb, t_list **moves);
 
