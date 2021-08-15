@@ -14,8 +14,8 @@
 
 void	do_sa(t_list **stack_a, t_list **stack_b)
 {
-	t_list *tmp_a1;
-	t_list *tmp_a3;
+	t_list	*tmp_a1;
+	t_list	*tmp_a3;
 
 	if (ft_lstsize(*stack_a) < 2)
 		return ;

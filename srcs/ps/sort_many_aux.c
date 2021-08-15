@@ -17,7 +17,6 @@ void	populate_chunk_limits(t_list **stack_a, t_list **cl, int nbchunks)
 	int	i;
 	int	step;
 
-
 	i = -1;
 	step = ft_lstsize(*stack_a) / nbchunks;
 	while (++i < nbchunks)
@@ -25,7 +24,7 @@ void	populate_chunk_limits(t_list **stack_a, t_list **cl, int nbchunks)
 	ft_lstadd_back(cl, ft_lstnew(ft_itoa(ft_lstsize(*stack_a))));
 }
 
-int		is_in_chunk(t_list *chunk, int number)
+int	is_in_chunk(t_list *chunk, int number)
 {
 	return (ft_atoi(chunk->content) <= number
 		&& number < ft_atoi(chunk->next->content));
@@ -41,7 +40,7 @@ void	push_rb(t_list **sa, t_list **sb, t_list **mvs, t_list *chunk)
 		add_move(RB, sa, sb, mvs);
 }
 
-int		is_minmax(int number, int *minmax)
+int	is_minmax(int number, int *minmax)
 {
 	return (number == minmax[0] || number == minmax[1]);
 }
@@ -49,7 +48,6 @@ int		is_minmax(int number, int *minmax)
 void	pushback_upd(t_list **s_a, t_list **s_b, t_list **moves, int *minmax)
 {
 	add_move(PA, s_a, s_b, moves);
-
 	if ((*s_a)->rank == minmax[0] && ft_lstsize(*s_a) > 1)
 	{
 		add_move(RA, s_a, s_b, moves);

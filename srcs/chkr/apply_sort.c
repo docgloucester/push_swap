@@ -36,7 +36,7 @@ int	is_op(char *str)
 		return (RRR);
 	if (ft_strncmp(str, "rr", 2) == 0)
 		return (RR);
-return (-1);
+	return (-1);
 }
 
 void	raise_apply_error(int op, int status)

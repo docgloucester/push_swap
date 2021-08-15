@@ -14,7 +14,7 @@
 
 void	do_rra(t_list **stack_a, t_list **stack_b)
 {
-	int	size;
+	int		size;
 	t_list	*tmp_a1;
 	t_list	*curr;
 

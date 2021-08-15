@@ -21,7 +21,7 @@
 # include <errno.h>
 # define BUFFER_SIZE 100
 
-typedef	struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	int				rank;

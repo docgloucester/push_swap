@@ -41,6 +41,46 @@ void	sort_3(t_list **stack_a, t_list **moves)
 	}
 }
 
+int	pos_where_to_insert(t_list **st_a, int to_insert)
+{
+	int		i;
+	t_list	*curr;
+
+	curr = *st_a;
+	i = 0;
+	while (++i < ft_lstsize(*st_a) && ft_atoi(curr->content) < to_insert)
+		curr = curr->next;
+	if (!(ft_atoi(curr->content) < to_insert))
+		i--;
+	return (i);
+}
+
+void	insert_back(t_list **st_a, t_list **st_b, int to_insert, t_list **moves)
+{
+	int		i;
+	int		ret;
+
+	i = pos_where_to_insert(st_a, to_insert);
+	if (i <= ft_lstsize(*st_a) / 2)
+	{
+		ret = i;
+		while (i-- > 0)
+			add_move(RA, st_a, NULL, moves);
+		add_move(PA, st_a, st_b, moves);
+		while (++i < ret)
+			add_move(RRA, st_a, NULL, moves);
+	}
+	else
+	{
+		ret = i;
+		while (i++ < ft_lstsize(*st_a))
+			add_move(RRA, st_a, NULL, moves);
+		add_move(PA, st_a, st_b, moves);
+		while (i-- > ret)
+			add_move(RA, st_a, NULL, moves);
+	}
+}
+
 void	sort_5(t_list **stack_a, t_list **moves)
 {
 	t_list	*stack_b;
@@ -50,15 +90,11 @@ void	sort_5(t_list **stack_a, t_list **moves)
 	size = ft_lstsize(*stack_a);
 	while (ft_lstsize(*stack_a) > 3)
 		add_move(PB, stack_a, &stack_b, moves);
-//printf("size of b is now %d\n", ft_lstsize(stack_b));
 	if (size == 5 && get_value(stack_b, 1) > get_value(stack_b, 0))
 		add_move(SB, NULL, &stack_b, moves);
 	sort_3(stack_a, moves);
-	while(stack_b)
-	{
-		roll_stack(stack_a, &stack_b, get_value(stack_b, 0), moves);
-		
-	}
+	while (stack_b)
+		insert_back(stack_a, &stack_b, get_value(stack_b, 0), moves);
 }
 
 void	sort_simple(t_list **stack_a, t_list **moves)

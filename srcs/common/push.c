@@ -16,6 +16,7 @@ void	do_pa(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*tmp_a1;
 	t_list	*tmp_b2;
+
 	if (ft_lstsize(*stack_b))
 	{
 		tmp_a1 = *stack_a;

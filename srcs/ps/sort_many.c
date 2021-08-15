@@ -12,13 +12,18 @@
 
 #include "push_swap.h"
 
-static void	push_sorted_on_a(t_list **sa, t_list **sb, t_list **mvs, t_list *c)
+void	fill_minmax(t_list *c, int *minmax)
+{
+	minmax[1] = ft_atoi(c->next->content) - 1;
+	minmax[0] = ft_atoi(c->content);
+}
+
+void	push_sorted_on_a(t_list **sa, t_list **sb, t_list **mvs, t_list *c)
 {
 	int	minmax[2];
 	int	i;
 
-	minmax[1] = ft_atoi(c->next->content) - 1;
-	minmax[0] = ft_atoi(c->content);
+	fill_minmax(c, minmax);
 	while (ft_lstsize(*sb) > 0)
 	{
 		i = -1;
@@ -54,13 +59,14 @@ void	put_on_bot_smallest_sorted(t_list **s_a, t_list **moves, t_list *c)
 		if (get_rank(*s_a, i) == ft_atoi(c->content) - 1)
 		{
 			while (i-- >= 0 && ft_lstsize(*s_a) > 1)
-					add_move(RA, s_a, NULL, moves);
+				add_move(RA, s_a, NULL, moves);
 			return ;
 		}
-		else if (get_rank(*s_a, ft_lstsize(*s_a) - i - 1) == ft_atoi(c->content) - 1)
+		else if (get_rank(*s_a, ft_lstsize(*s_a) - i - 1)
+			== ft_atoi(c->content) - 1)
 		{
 			while (i-- > 0 && ft_lstsize(*s_a) > 1)
-					add_move(RRA, s_a, NULL, moves);
+				add_move(RRA, s_a, NULL, moves);
 			return ;
 		}
 	}
