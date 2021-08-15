@@ -40,7 +40,9 @@ OBJS_CO	=	${SRCS_CO:.c=.o}
 .c.o	:		${INCL}checker.h ${INCL}push_swap.h ${LIBFT}${INCL}libft.h
 			${CC} ${CFLAGS} -I${LIBFT}${INCL} -I${INCL} -c $< -o ${<:.c=.o}
 
-all	:		${NAME_C} ${NAME_PS}
+all	:		${NAME_PS}
+
+full :		all ${NAME_C}
 
 ${NAME_C}	:	_libft ${OBJS_C} ${OBJS_CO}
 			${CC} ${CFLAGS} -o ${NAME_C} ${OBJS_C} ${OBJS_CO} ${LIBFT}libft.a
