@@ -1,5 +1,5 @@
 # push_swap
-My take at the dreaded push_swap project from the 42 Common Core.
+My take on the dreaded push_swap project from the 42 Common Core.
 
 # Objective
 
