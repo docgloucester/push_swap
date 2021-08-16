@@ -25,10 +25,10 @@ I have also written a program that checks if the instructions output by push_swa
 Here's an example of use on Linux:
 ```bash
 # make both push_swap and checker
-make full
+>$ make full
 
-# generate an array if STACKSIZE different integers, feeds it to push_swap, then pipe its output into checker, feeds it again to push_swap then count the number of instructions
-ARG=$(shuf -i 0-10000 -n STACKSIZE | tr '\n' ' '); ./push_swap $ARG | ./checker $ARG; ./push_swap $ARG | wc -l
-> OK # result of checker : the sorting algorithm output by push_swap is valid for the ARG stack
-> NB_OPERATIONS # result of wc -l : the number of instructions of the generated sorting algorithm
+# generate an array of STACKSIZE different integers, feeds it to push_swap, then pipe its output into checker, feeds it again to push_swap then count the number of instructions
+>$ ARG=$(shuf -i 0-10000 -n STACKSIZE | tr '\n' ' '); ./push_swap $ARG | ./checker $ARG; ./push_swap $ARG | wc -l
+OK # result of checker : the sorting algorithm output by push_swap is valid for the ARG stack
+NB_OPERATIONS # result of wc -l : the number of instructions of the generated sorting algorithm
 ```
