@@ -1,6 +1,8 @@
 # push_swap
 My take on the dreaded push_swap project from the 42 Common Core.
 
+The subject can be found [here](https://cdn.intra.42.fr/pdf/pdf/27527/en.subject.pdf)
+
 # Objective
 
 push_swap is an algorithmics project that allows one to become familiar with sorting algorithms and the notion of algorithmic complexity.
