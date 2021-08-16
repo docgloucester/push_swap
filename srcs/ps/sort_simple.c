@@ -70,7 +70,7 @@ int	pos_of_closest(t_list **st_a, int to_insert)
 	return (closest);
 }
 
-void	insert_back(t_list **st_a, t_list **st_b, int to_insert, t_list **moves)
+void	rot_insert(t_list **st_a, t_list **st_b, int to_insert, t_list **moves)
 {
 	int		i;
 
@@ -108,7 +108,7 @@ void	sort_5(t_list **stack_a, t_list **moves)
 		add_move(PB, stack_a, &stack_b, moves);
 	sort_3(stack_a, moves);
 	while (stack_b)
-		insert_back(stack_a, &stack_b, get_rank(stack_b, 0), moves);
+		rot_insert(stack_a, &stack_b, get_rank(stack_b, 0), moves);
 	pos = -1;
 	while (++pos < ft_lstsize(*stack_a) && get_rank(*stack_a, pos) > 0)
 		;
