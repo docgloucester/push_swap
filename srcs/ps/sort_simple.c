@@ -41,24 +41,22 @@ void	sort_3(t_list **stack_a, t_list **moves)
 	}
 }
 
-int	pos_of_closest(t_list **st_a, int to_insert)
+int	pos_of_closest(t_list *st_a, int to_insert)
 {
 	int		i;
 	int		dist;
 	int		tmp;
-	t_list	*curr;
 	int		closest;
 
-	curr = *st_a;
-	dist = to_insert - curr->rank;
+	dist = to_insert - st_a->rank;
 	if (dist < 0)
 		dist = -dist;
 	i = -1;
 	closest = 0;
-	while (curr)
+	while (st_a)
 	{
 		++i;
-		tmp = to_insert - curr->rank;
+		tmp = to_insert - st_a->rank;
 		if (tmp < 0)
 			tmp = -tmp;
 		if (tmp < dist)
@@ -66,7 +64,7 @@ int	pos_of_closest(t_list **st_a, int to_insert)
 			dist = tmp;
 			closest = i;
 		}
-		curr = curr->next;
+		st_a = st_a->next;
 	}
 	return (closest);
 }
@@ -75,7 +73,7 @@ void	rot_insert(t_list **st_a, t_list **st_b, int to_insert, t_list **moves)
 {
 	int		i;
 
-	i = pos_of_closest(st_a, to_insert);
+	i = pos_of_closest(*st_a, to_insert);
 	if (get_rank(*st_a, i) > to_insert)
 	{
 		if (i <= ft_lstsize(*st_a) / 2)
