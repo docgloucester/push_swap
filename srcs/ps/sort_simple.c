@@ -54,6 +54,7 @@ int	pos_of_closest(t_list **st_a, int to_insert)
 	if (dist < 0)
 		dist = -dist;
 	i = -1;
+	closest = 0;
 	while (curr)
 	{
 		++i;
