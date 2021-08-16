@@ -77,6 +77,6 @@ void	apply_sort(t_list **stack_a, t_ops *ops)
 		status = get_next_line(0, &line);
 	}
 	if (stack_b)
-		ft_lstclear(&stack_b, do_nothing);
+		ft_lstclear(&stack_b, free);
 	raise_apply_error(op, status);
 }

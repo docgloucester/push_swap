@@ -12,12 +12,24 @@
 
 #include <push_swap.h>
 
-void	check_oob(char **argv, int i)
+void	check_oob(char *arg)
 {
-	ft_atoi(argv[i]);
+	int		j;
+	char	**split;
+
+	if (is_russian_doll(arg))
+	{
+		j = -1;
+		split = ft_split(arg, ' ');
+		while (split[++j])
+			ft_atoi(split[j]);
+		free_split(split);
+	}
+	else
+		ft_atoi(arg);
 	if (errno)
 	{
-		ft_error("Arguments should be within int limits.\n");
+		ft_error("");
 		exit(-1);
 	}
 }
@@ -29,22 +41,19 @@ void	sanitize_input(int argc, char **argv)
 
 	i = 0;
 	if (argc < 2)
-	{
-		ft_error("Stack A has to be provided as args, as a list of integers\n");
 		exit(0);
-	}
 	while (++i < argc)
 	{
 		j = -1;
 		while (argv[i][++j])
 		{
-			if (!(ft_isdigit(argv[i][j])
+			if (!(ft_isdigit(argv[i][j]) || argv[i][j] == ' '
 				|| (argv[i][j] == '-' && ft_isdigit(argv[i][j + 1]))))
 			{
-				ft_error("Arguments should be a list of integers only\n");
+				ft_error("");
 				exit(-1);
 			}
 		}
-		check_oob(argv, i);
+		check_oob(argv[i]);
 	}
 }

@@ -17,7 +17,7 @@ CC		=	clang
 CFLAGS	=	-Wall -Wextra -Werror -g
 
 INCL	=	includes/
-LIBFT	=	Libft/
+LIBFT_D	=	Libft/
 
 SRCSD_C	=	srcs/chkr/
 SRCSF_C	=	main.c apply_sort.c
@@ -37,18 +37,20 @@ OBJS_CO	=	${SRCS_CO:.c=.o}
 
 
 
-.c.o	:		${INCL}checker.h ${INCL}push_swap.h ${LIBFT}${INCL}libft.h
-			${CC} ${CFLAGS} -I${LIBFT}${INCL} -I${INCL} -c $< -o ${<:.c=.o}
+.c.o	:		${INCL}checker.h ${INCL}push_swap.h ${LIBFT_D}${INCL}libft.h
+			${CC} ${CFLAGS} -I${LIBFT_D}${INCL} -I${INCL} -c $< -o ${<:.c=.o}
 
 all	:		${NAME_PS}
 
 full :		all ${NAME_C}
 
-${NAME_C}	:	_libft ${OBJS_C} ${OBJS_CO}
-			${CC} ${CFLAGS} -o ${NAME_C} ${OBJS_C} ${OBJS_CO} ${LIBFT}libft.a
+${NAME_C}	:	${OBJS_C} ${OBJS_CO}
+			make -C ${LIBFT_D}
+			${CC} ${CFLAGS} -o ${NAME_C} ${OBJS_C} ${OBJS_CO} ${LIBFT_D}libft.a
 
-${NAME_PS}	:	_libft ${OBJS_PS} ${OBJS_CO}
-			${CC} ${CFLAGS} -o ${NAME_PS} ${OBJS_PS} ${OBJS_CO} ${LIBFT}libft.a
+${NAME_PS}	:	${OBJS_PS} ${OBJS_CO}
+			make -C ${LIBFT_D}
+			${CC} ${CFLAGS} -o ${NAME_PS} ${OBJS_PS} ${OBJS_CO} ${LIBFT_D}libft.a
 clean	:
 			find . -type f -name "*.o" -delete
 
@@ -57,8 +59,5 @@ fclean	:	clean
 			rm -rf ${NAME_C} ${NAME_PS}
 
 re	:		fclean all
-
-_libft	:
-			make -C ${LIBFT}
 
 .PHONY	:	re clean fclean

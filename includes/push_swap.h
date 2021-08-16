@@ -15,11 +15,11 @@
 
 # include <libft.h>
 # include <unistd.h>
-# include <stdio.h>
 
 /*COMMON FUNCTIONS*/
 t_list	*put_on_list(int argc, char **argv);
 void	sanitize_input(int argc, char **argv);
+int		is_russian_doll(char *curr_arg);
 int		is_in_order(t_list *stack);
 void	do_nothing(void *ptr);
 

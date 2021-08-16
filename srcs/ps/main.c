@@ -12,28 +12,27 @@
 
 #include <push_swap.h>
 
-int	simplifyable(t_list *mvs)
+int	is_simplifyable(t_list *move)
 {
 	char	*s1;
 	char	*s2;
 
-	s1 = mvs->content;
-	s2 = mvs->next->content;
-	if ((ft_atoi(s1) == SA) && (ft_atoi(s2) == SB) && write(1, "ss\n", 3))
-		return (1);
-	if ((ft_atoi(s1) == SB) && (ft_atoi(s2) == SA) && write(1, "ss\n", 3))
-		return (1);
-	if ((ft_atoi(s1) == RA) && (ft_atoi(s2) == RB) && write(1, "rr\n", 3))
-		return (1);
-	if ((ft_atoi(s1) == RB) && (ft_atoi(s2) == RA) && write(1, "rr\n", 3))
-		return (1);
-	if ((ft_atoi(s1) == RRA) && (ft_atoi(s2) == RRB) && write(1, "rrr\n", 4))
-		return (1);
-	if ((ft_atoi(s1) == RRB) && (ft_atoi(s2) == RRA) && write(1, "rrr\n", 4))
-		return (1);
-	if ((ft_atoi(s1) == PA) && (ft_atoi(s2) == PB))
-		return (1);
-	if ((ft_atoi(s1) == PB) && (ft_atoi(s2) == PA))
+	s1 = move->content;
+	s2 = move->next->content;
+	if (((ft_atoi(s1) == SA) && (ft_atoi(s2) == SB) && write(1, "ss\n", 3))
+		|| ((ft_atoi(s1) == SB) && (ft_atoi(s2) == SA) && write(1, "ss\n", 3))
+		|| ((ft_atoi(s1) == RA) && (ft_atoi(s2) == RB) && write(1, "rr\n", 3))
+		|| ((ft_atoi(s1) == RB) && (ft_atoi(s2) == RA) && write(1, "rr\n", 3))
+		|| ((ft_atoi(s1) == RRA) && (ft_atoi(s2) == RRB)
+			&& write(1, "rrr\n", 4))
+		|| ((ft_atoi(s1) == RRB) && (ft_atoi(s2) == RRA)
+			&& write(1, "rrr\n", 4))
+		|| ((ft_atoi(s1) == PA) && (ft_atoi(s2) == PB))
+		|| ((ft_atoi(s1) == PB) && (ft_atoi(s2) == PA))
+		|| ((ft_atoi(s1) == RRA) && (ft_atoi(s2) == RA))
+		|| ((ft_atoi(s1) == RRB) && (ft_atoi(s2) == RB))
+		|| ((ft_atoi(s1) == RA) && (ft_atoi(s2) == RRA))
+		|| ((ft_atoi(s1) == RB) && (ft_atoi(s2) == RRB)))
 		return (1);
 	return (0);
 }
@@ -64,15 +63,15 @@ void	actual_print(t_list *moves)
 		write(1, "rrr\n", 4);
 }
 
-void	print_moves(t_list *moves)
+void	print_moves(t_list *move)
 {
-	while (moves)
+	while (move)
 	{
-		if (moves->next && simplifyable(moves))
-			moves = moves->next;
+		if (move->next && is_simplifyable(move))
+			move = move->next;
 		else
-			actual_print(moves);
-		moves = moves->next;
+			actual_print(move);
+		move = move->next;
 	}
 }
 
@@ -95,7 +94,7 @@ int	main(int argc, char **argv)
 	if (!is_in_order(stack_a))
 		lets_sort(&stack_a, &moves);
 	print_moves(moves);
-	ft_lstclear(&stack_a, do_nothing);
+	ft_lstclear(&stack_a, free);
 	ft_lstclear(&moves, free);
 	return (0);
 }

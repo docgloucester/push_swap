@@ -18,7 +18,7 @@ void	fill_minmax(t_list *c, int *minmax)
 	minmax[0] = ft_atoi(c->content);
 }
 
-void	push_sorted_on_a(t_list **sa, t_list **sb, t_list **mvs, t_list *c)
+void	push_on_a(t_list **sa, t_list **sb, t_list **mvs, t_list *c)
 {
 	int	minmax[2];
 	int	i;
@@ -47,7 +47,7 @@ void	push_sorted_on_a(t_list **sa, t_list **sb, t_list **mvs, t_list *c)
 	}
 }
 
-void	put_on_bot_smallest_sorted(t_list **s_a, t_list **moves, t_list *c)
+void	roll_a_to_insert(t_list **s_a, t_list **moves, t_list *c)
 {
 	int	i;
 
@@ -117,8 +117,8 @@ void	sort_many(t_list **stack_a, t_list **moves)
 	while (curr_chunk->next)
 	{
 		pb_chunk(stack_a, &stack_b, curr_chunk, moves);
-		put_on_bot_smallest_sorted(stack_a, moves, curr_chunk);
-		push_sorted_on_a(stack_a, &stack_b, moves, curr_chunk);
+		roll_a_to_insert(stack_a, moves, curr_chunk);
+		push_on_a(stack_a, &stack_b, moves, curr_chunk);
 		while (is_in_chunk(curr_chunk, (*stack_a)->rank)
 			&& ft_lstsize(*stack_a) > 1)
 			add_move(RA, stack_a, &stack_b, moves);

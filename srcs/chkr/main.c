@@ -35,6 +35,6 @@ int	main(int argc, char **argv)
 		write(1, "KO\n", 3);
 	else
 		write(1, "OK\n", 3);
-	ft_lstclear(&stack_a, do_nothing);
+	ft_lstclear(&stack_a, free);
 	return (0);
 }

@@ -11,11 +11,6 @@
 /* ************************************************************************** */
 #include <push_swap.h>
 
-void	do_nothing(void *ptr)
-{
-	(void)ptr;
-}
-
 int	is_in_order(t_list *stack)
 {
 	while (stack->next)
@@ -45,7 +40,7 @@ void	detect_duplicate(t_list *stack)
 			if (curr != curr2
 				&& ft_atoi(curr2->content) == ft_atoi(curr->content))
 			{
-				ft_error("The stack must be constituted of unique integers\n");
+				ft_error("");
 				exit(-1);
 			}
 			curr2 = curr2->next;
@@ -55,15 +50,39 @@ void	detect_duplicate(t_list *stack)
 	}
 }
 
+int	is_russian_doll(char *curr_arg)
+{
+	while (*curr_arg)
+	{
+		if ((*curr_arg == ' ') && ft_isdigit(curr_arg[1]))
+			return (1);
+		curr_arg++;
+	}
+	return (0);
+}
+
 t_list	*put_on_list(int argc, char **argv)
 {
 	int		i;
 	t_list	*stack;
+	char	**split;
+	int		j;
 
 	i = 0;
 	stack = NULL;
 	while (++i < argc)
-		ft_lstadd_back(&stack, ft_lstnew(argv[i]));
+	{
+		if (is_russian_doll(argv[i]))
+		{
+			j = -1;
+			split = ft_split(argv[i], ' ');
+			while (split[++j])
+				ft_lstadd_back(&stack, ft_lstnew(ft_strdup(split[j])));
+			free_split(split);
+		}
+		else
+			ft_lstadd_back(&stack, ft_lstnew(ft_strdup(argv[i])));
+	}
 	detect_duplicate(stack);
 	return (stack);
 }
